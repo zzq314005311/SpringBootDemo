@@ -1,0 +1,43 @@
+package cn.service;
+
+import cn.pojo.Lawtype;
+import cn.pojo.Lawyer;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+public interface LawtypeService {
+	public List<Lawtype> getAll();
+
+
+	public List<Lawyer> selectLawyer();
+
+	public List<Lawyer> selectAll();
+
+	public List<Lawyer> getLawyerId(int id);
+
+	// 查询
+	public List<Lawtype> getLawtypeByPage(String typeName,int pageNow,int pageSize);
+
+	// 获取总条数
+	public int getTotal(String typeName);
+
+	// 添加
+	public void addLawtype(Lawtype lawtype);
+	
+	//通过Id获取Lawtype
+	public Lawtype getLawtypeById(int id); 
+
+	// 修改
+	public void updateLawtype(Lawtype Lawtype);
+
+	// 删除
+	public void deleteLawtype(int id);
+
+
+	
+	
+
+}

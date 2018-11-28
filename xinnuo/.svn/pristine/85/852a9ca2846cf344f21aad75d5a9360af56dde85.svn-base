@@ -1,0 +1,19 @@
+package cn.mapper;
+
+import cn.pojo.Lawyer;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+
+@Component
+public interface LawyerMapper {
+
+	Lawyer htlogin(Lawyer lawyer);
+	/*
+	 * void htaddUser(@Param(value = "name") String name, @Param(value = "pwd")
+	 * String pwd,
+	 * 
+	 * @Param(value = "phonenum") String phonenum);
+	 */
+
+}

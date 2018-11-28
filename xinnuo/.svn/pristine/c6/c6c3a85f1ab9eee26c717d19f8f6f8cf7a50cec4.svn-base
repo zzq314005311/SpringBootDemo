@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mapper.LawtypeMapper">
+<select id="selectLawType" resultType="Lawtype">
+select * from lawtype where fatherId=0;
+</select>
+
+<select id="selectLawyer" resultType="Lawyer">
+select * from Lawyer where average>=90
+</select>
+
+<select id="selectAll" resultType="Lawyer">
+select * from Lawyer where 90>average
+</select>
+
+</mapper>

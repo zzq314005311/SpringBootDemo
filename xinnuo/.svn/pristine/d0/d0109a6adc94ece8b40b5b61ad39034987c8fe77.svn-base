@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/context
+	 http://www.springframework.org/schema/context/spring-context.xsd
+	 http://www.springframework.org/schema/tx
+	 http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<context:component-scan base-package="cn.serviceimpl" />
+	 <context:property-placeholder location="classpath:mysql.properties"/>
+
+
+
+
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
+		<property name="username" value="${yoLo.userName}" />
+		<property name="password" value="${yoLo.password}" />
+		<property name="url" value="${yoLo.url}" />
+		<property name="driverClassName" value="${yoLo.driver}" />
+	</bean>
+
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="cn.pojo" />
+		<property name="configLocation" value="classpath:mybatis_config.xml" />
+	</bean>
+
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.mapper" />
+	</bean>
+	 <!-- 配置shiro -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- <property name="cacheManager" ref="cacheManager"></property> -->
+		<!-- <property name="sessionMode" value="Native"></property> -->
+		<property name="realm" ref="jdbcRealm"></property>
+	</bean>
+
+	<bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+		<property name="authenticationStrategy">
+			<!-- 认证策略 有三种方式 默认：AtLeastOneSuccessfulStrategy 只要有一个Realm认证成功即可通过 FilstSuccessfulStrategy 
+				只要有一个认证成功 只返回一个Realm的成功信息 其他的忽略 AllSuccessfulStrategy ? 所有Realm都要认证成功 且返回所有认证信息 -->
+			<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy">
+			</bean>
+		</property>
+	</bean>
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/index.jsp" />
+		<property name="successUrl" value="/login.jsp" />
+		<!-- 没有权限的页面 -->
+		<property name="unauthorizedUrl" value="/login.jsp" />
+
+		<!-- 配置哪些页面需要受到保护 ? 可以查看org.apache.shiro.web.filter.mgt.DefaultFilter类 
+			有哪些配置信息 以及访问这些页面需要的权限 anon 可以匿名访问，不需要认证 authc 必须认证 （即登录）后才能访问 logout 登出 匹配单个字符 
+			? *匹配零或多个字符串 **匹配路径中的零个或多个路径 roles 角色过滤器 -->
+		<!-- <property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"> 
+			</property> -->
+		 <property name="filterChainDefinitions"> 
+		 	<value> <!-- /demos=anon /template/toRegister.html=anon 
+			/register=anon /template/test.html=anon /template/lib/**=anon /template/static/**=anon 
+			/template/temp/**=anon /lib/**=anon /static/**=anon /temp/**=anon /template/login.html 
+			= anon /logins=anon /login=anon /template/welcome.html=anon /template/show.html=anon 
+			/template/index.html = roles[admin] /logout = logout # everything else requires 
+			authentication: /** = roles[user] 
+			/**=anon
+			/login=anon
+			/index=anon
+			/houtai/login=anon
+			/houtai/index=[admin] -->
+			/**= roles[user]
+			</value> 
+		</property>
+	</bean>
+
+	<bean class="cn.service.CustomRealm" id="jdbcRealm" /> 
+
+</beans>

@@ -1,0 +1,47 @@
+package cn.controller;
+
+import java.util.List;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.mapper.AnliMapper;
+import cn.mapper.ChargeMapper;
+import cn.pojo.Anli;
+import cn.pojo.Charge;
+
+import cn.service.AnliService;
+
+
+
+@Controller
+public class ChargeZuiMing {
+	
+
+@Autowired
+private ChargeMapper chargeMapper;
+@Autowired
+private AnliService anliService;
+
+/*@RequestMapping(value="/chargezui.do")
+	 public String infoHouser(Model model){
+		 List<Charge> charge = chargeMapper.cha();
+		 
+			 model.addAttribute("charge", charge);
+			return "zyZuiK";
+>>>>>>> .r48
+		
+//}
+}*/
+@RequestMapping(value = "/anli.do")
+	public String insmsm(Model model){
+		List<Anli> anli = anliService.chaAnli();
+		model.addAttribute("anli", anli);
+		return "zyZuiK";
+		
+		
+	}
+}

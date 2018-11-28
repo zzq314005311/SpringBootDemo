@@ -1,0 +1,29 @@
+package cn.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.mapper.EntrustMapper;
+import cn.pojo.Entrust;
+import cn.service.EntrustService;
+
+@Service
+public class entrustServiceImpl implements EntrustService {
+	@Autowired
+	private EntrustMapper entrustServiceImpl;
+
+	@Override
+	public List<Entrust> select() {
+		// TODO Auto-generated method stub
+		return entrustServiceImpl.select();
+	}
+
+	@Override
+	public Entrust reply(Entrust entrust) {
+		// TODO Auto-generated method stub
+		return entrustServiceImpl.reply(entrust);
+	}
+
+}

@@ -1,0 +1,48 @@
+package cn.controller;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import cn.pojo.Entrust;
+import cn.service.EntrustService;
+
+@Controller
+@SessionAttributes(value = { "title", "money", "type", "content", "time", "whether" })
+public class EntrustController {
+	@Autowired
+	private EntrustService entrustService;
+
+	@RequestMapping("entrust.do")
+	public String selAll(Model model) {
+		List<Entrust> entrusts = entrustService.select();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if (entrusts != null) {
+			model.addAttribute("entrusts", entrusts);
+			return "entrust";
+		}
+		return "index";
+	}
+
+	@RequestMapping("houtai/reply.do")
+	public String reply(Entrust entrust, Model model, int id) {
+		entrust.setId(id);
+		entrust = entrustService.reply(entrust);
+		if (entrust != null) {
+			model.addAttribute("title", entrust.getTitle());
+			model.addAttribute("money", entrust.getMoney());
+			model.addAttribute("type", entrust.getType());
+			model.addAttribute("content", entrust.getContent());
+			model.addAttribute("time", entrust.getTime());
+			model.addAttribute("whether", entrust.getWhether());
+			return "houtai/reply";
+		}
+		return null;
+
+	}
+}

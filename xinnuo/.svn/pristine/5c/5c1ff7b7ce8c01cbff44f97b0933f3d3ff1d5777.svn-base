@@ -1,0 +1,38 @@
+package cn.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.mapper.LawtypeMapper;
+import cn.pojo.Lawtype;
+import cn.pojo.Lawyer;
+import cn.service.LawtypeService;
+
+@Service
+public class LawtypeServiceImpl implements LawtypeService {
+	@Autowired
+	private LawtypeMapper lawtypeMapper;
+
+	@Override
+	public List<Lawyer> selectAll() {
+		// TODO Auto-generated method stub
+		return lawtypeMapper.selectAll();
+	}
+
+	@Override
+	public List<Lawtype> getAll() {
+		// TODO Auto-generated method stub
+		return lawtypeMapper.getAll();
+	}
+
+	@Override
+	public List<Lawyer> selectLawyer() {
+		// TODO Auto-generated method stub
+		return lawtypeMapper.selectLawyer();
+	}
+
+	
+
+}

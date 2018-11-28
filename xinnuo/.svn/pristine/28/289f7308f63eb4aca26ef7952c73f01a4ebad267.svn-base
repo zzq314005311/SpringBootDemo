@@ -1,0 +1,50 @@
+#main {width:978px; text-align:center; margin-left:auto; margin-right:auto;}
+#il{float:left; width:753px;}
+#hdp{width:273px; height:193px; border-style:solid; border-width:1px; border-color:#DCE1E7; float:left; overflow:hidden}
+#ttbg{margin-left:11px; width:465px; height:195px; background:#F9EDED; float:left}
+#tt{margin:5px; width:451px; height:181px; border-style:solid; border-width:2px; border-color:#DCE1E7; background:#FFFFFF}
+#rdgzbg{width:753px; height:190px;}
+#rdgz{height:22px; color:#3366CC; font-size:15px; font-weight:bold; padding:3px; text-align:left;}
+.rdgznr{height:25px; font-size:14px; display:inline; width:370px; float:left; text-align:left; margin-top:7px;}
+#rbtjbg{width:753px; margin-bottom:5px;}
+#rbtj{height:22px; color:#3366CC; font-size:15px; font-weight:bold; padding:3px; text-align:left; float:left}
+#rbtjs{height:22px; color:#3366CC; font-size:15px; font-weight:bold; padding:3px; text-align:right; float:right}
+.rbtjnr1{width:110px; float:left; overflow:hidden; margin-top:7px;}
+.rbtjnr2{float:left; line-height:120%; overflow:hidden; width:250px; text-align:left; margin-top:7px; margin-left:5px; color:#888888}
+/*ÍÆ¼öÌù°É*/
+.rbtjnr3{width:180px; float:left; overflow:hidden; margin-top:15px; margin-left:5px; border-style:solid; border-width:1px; border-color:#DCE1E7;}
+.rbtjnr4{width:65px; float:left; overflow:hidden; margin-top:3px;}
+.rbtjnr5{float:left; line-height:120%; overflow:hidden; width:105px; text-align:left; margin-left:5px; margin-top:3px; color:#888888}
+.flljbg{width:753px;}
+.tbflnr1{width:105px; float:left; font-size:14px; font-weight:bold; height:30px; line-height:30px; overflow:hidden; text-align:left;}
+.tbflnr2{width:625px; float:left; font-size:14px; height:30px; line-height:30px; overflow:hidden; text-align:left;}
+.xx{border-top:1px dashed #cccccc;height: 1px;overflow:hidden;}
+#yqlj{height:22px; color:#3366CC; font-size:15px; font-weight:bold; padding:3px; text-align:left;}
+#ir{float:right; width:206px;}
+.dl{width:214px; min-height:193px !important; background:#F9EDED; border:1px solid #DCE1E7;}
+#dlan{background-image:url(login.gif); width:52px; height:26px; border:0;}
+.dltt{height:26px; text-align:center;}
+.rbg{width:214px; background:#F9EDED; margin-top:15px;}
+.rbk{height:24px; text-align:center; color:#3366CC; font-size:15px; font-weight:bold; line-height:24px; text-align:left;}
+.rnr{margin:5px; width:202px; border-style:solid; border-width:1px; border-color:#DCE1E7; background:#FFFFFF}
+.ggpnr{text-align:left; margin-top:3px; margin-left:4px;}
+.tbdrnr{float:left; padding:2px; overflow:hidden; text-align:center; width:95px;}
+#rad{width:214px; text-align:center; margin-top:10px; border:1px solid #DCE1E7; padding-bottom:5px; padding-top:3px;}
+#cxzqnr1{float:left; width:60px; margin-top:2px;}
+#cxzqnr2{float:right; margin-left:2px; margin-top:2px; text-align:left; width:135px;}
+.li3{font-size:14px; font-weight:bold;}
+.li4{height:26px; text-align:center; padding:2px; line-height:26px;}
+.li5{height:26px; text-align:center; color:#3366CC; font-size:15px; font-weight:bold; padding:2px;}
+.li6{height:26px; text-align:left; padding:2px;}
+.li7{height:26px; text-align:center; color:#D31A01; font-size:16px; font-weight:bold; padding-top:5px;}
+.li8{text-align:left; line-height:140%; padding-bottom:8px; padding-left:3px; padding-right:3px;}
+.li9{text-align:left; margin-top:3px;}
+.flink {width:103px; float:left; padding:3px; overflow:hidden;}
+.nclear{font-size:0px; height:3px; clear:both;}
+.rebar{float:left; margin:2px; width:18px; text-align:center; color:#FFFFFF; font-size:12px; font-weight:bold}
+.rbarm{float:left; margin:2px; font-size:12px;}
+.indexada{width:753px; margin-top:8px; margin-bottom:3px; padding-top:3px; padding-bottom:3px; border-style:solid; border-width:1px; border-color:#DCE1E7;}
+/*Ê×Ò³·ÖÀàcss*/
+.fenleia{border:#E45A5A 1px solid; width:370px; float:left; height:155px;}
+.fenleib{border:#E45A5A 1px solid; width:370px; float:right; height:155px;}
+.fenleibt{background-color:#F9EDED; text-align:left; height:25px; line-height:25px; font-size: 14px; font-weight: bold;}

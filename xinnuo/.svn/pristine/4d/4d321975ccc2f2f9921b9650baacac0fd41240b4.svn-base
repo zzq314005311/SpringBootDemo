@@ -1,0 +1,16 @@
+package cn.service;
+
+import cn.pojo.Lawtype;
+import cn.pojo.Lawyer;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+
+public interface LawtypeService {
+	public List<Lawtype> getAll();
+	List<Lawyer> selectLawyer();
+	List<Lawyer> selectAll();
+    
+}

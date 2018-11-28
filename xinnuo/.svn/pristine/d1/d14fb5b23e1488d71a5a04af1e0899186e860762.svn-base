@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mapper.LawtypeMapper">
+
+	<resultMap id="categoryMap1" type="Lawtype">
+		<id property="id" column="id"></id>
+		<result property="typeName" column="typeName"></result>
+		<collection property="categoryList" ofType="Lawtype"
+			column="id" select="getById" />
+	</resultMap>
+
+	<!--根据父类id查找其子类别 -->
+	<select id="getById" resultMap="categoryMap1" parameterType="int"
+		useCache="true">
+		SELECT *
+		FROM Lawtype
+		WHERE fatherId = #{id}
+	</select>
+	<!--根据父类id查找其子类别 -->
+	<select id="getById" resultMap="categoryMap1" parameterType="int"
+		useCache="true">
+		SELECT * FROM Lawtype WHERE fatherId = #{id}
+	</select>
+
+	<!--查找所有类别(递归) -->
+	<select id="getAll" resultMap="categoryMap1" parameterType="int"
+		useCache="true">
+		SELECT *
+		FROM Lawtype
+		WHERE fatherId=0
+	</select>
+	<!--查找所有类别(递归) -->
+	<select id="getAll" resultMap="categoryMap1" parameterType="int"
+		useCache="true">
+		SELECT * FROM Lawtype WHERE fatherId=0
+	</select>
+
+	<select id="selectLawyer" resultType="Lawyer" useCache="true">
+		select * from Lawyer where average>=90
+	</select>
+	<select id="selectLawyer" resultType="Lawyer" useCache="true">
+		select *
+		from Lawyer where average>=90
+	</select>
+
+	<select id="selectAll" resultType="Lawyer" useCache="true">
+		select * from Lawyer where 90>average
+	</select>
+	
+	<select id="selectAll" resultType="Lawyer" useCache="true">
+		select *
+		from Lawyer where 90>average
+	</select>
+
+	<select id="getLawyerId" resultType="Lawyer" parameterType="int">
+		select l.`name`,l.`phonenum`,l.`head`,l.`address`,l.`describe` from
+		Lawyer l
+		inner join Lawtype t on l.`majormajorId` = t.`id`
+		where l.majormajorid=#{id} or l.minormajorid=#{id}
+	</select>
+
+
+	<!--后台 -->
+	<!-- 分页查询 -->
+	<select id="getLawtypeByPage" resultType="Lawtype">
+		select * from Lawtype where 1=1  
+		<if test="typeName != null and typeName!=''">
+ AND typeName LIKE CONCAT('%',#{typeName},'%') 
+		</if>
+limit #{pageNow},#{pageSize}
+	</select>
+	<!-- 查询总条数 -->
+	<select id="getTotal" resultType="int" parameterType="string">
+		select count(1) from Lawtype where 1=1    
+		<if test="typeName != null and typeName!=''">AND typeName LIKE CONCAT('%',#{typeName},'%')</if>
+	</select>
+	<!-- 添加 -->
+	<insert id="addLawtype" parameterType="Lawtype">
+		insert into Lawtype(`typeName`,`fatherId`,`type`)
+		values(#{typeName},#{fatherId},#{type})
+	</insert>
+	<!--通过Id获取Lawtype -->
+	<select id="getLawtypeById" resultType="Lawtype" parameterType="_int">
+		select * from Lawtype WHERE id=#{id}
+	</select>
+	<!-- 修改 -->
+	<update id="updateLawtype" parameterType="Lawtype">
+		update Lawtype set typeName = #{typeName},fatherId = #{fatherId},type=
+		#{type} where id = #{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteLawtype" parameterType="int">
+		delete from Lawtype where id = #{id}
+	</delete>
+
+
+</mapper>

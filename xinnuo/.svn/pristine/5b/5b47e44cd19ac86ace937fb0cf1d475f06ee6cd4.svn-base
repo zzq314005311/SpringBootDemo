@@ -1,0 +1,183 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>信诺律师网</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+  </head>
+  
+  <body>
+    <!-- start header -->
+		<header>
+			<div class="top center">
+				<div class="left fl">
+					<ul>
+						<li><a href="getLawtypeList.do">掌上律师</a></li>
+						<li>|</li>
+						<li><a href="getLawtypeList.do">首页</a></li>
+						<li>|</li>
+						<li><a href="">法律咨询</a></li>
+						<li>|</li>
+						<li><a href="">找律师</a></li>
+						<li>|</li>
+						<li><a href="">法律知识</a></li>
+						<li>|</li>
+						<li><a href="">云服务</a></li>
+						<li>|</li>
+						<li><a href="">问题反馈</a></li>
+						<li>|</li>
+						<li><a href="">Select Region</a></li>
+					</ul>
+				</div>
+				<div class="right fr">
+					<div class="gouwuche fr"><a href="entrust.do">发帖</a></div>
+					<div class="fr">
+						<ul>
+							<li><a href="./login.jsp">登录</a></li>
+							<li>|</li>
+							<li><a href="./register.jsp">注册</a></li>
+							<li>|</li>
+							<li><a href="">消息通知</a></li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</header>
+	<!--end header -->
+
+<!-- start banner_x -->
+		<div class="banner_x center">
+			<a href="getLawtypeList.do"><div class="logo fl"></div></a>
+			<a href=""><div class="ad_top fl"></div></a>
+			<div class="nav fl">
+				<ul>
+					<li><a href="getLawtypeList.do">首页</a></li>
+					<li><a href="">法律咨询</a></li>
+					<li><a href="">找律师</a></li>
+					<li><a href="">法律知识</a></li>
+					<li><a href="">精品栏目</a></li>
+				</ul>
+			</div>
+			<div class="search fr">
+				<form action="" method="post">
+					<div class="text fl">
+						<input type="text" class="shuru"  placeholder="免费法律咨询">
+					</div>
+					<div class="submit fl">
+						<input type="submit" class="sousuo" value="搜索"/>
+					</div>
+					<div class="clear"></div>
+				</form>
+				<div class="clear"></div>
+			</div>
+		</div>
+<!-- end banner_x -->
+
+	<!-- start banner_y -->
+		<div class="banner_y center">
+			<div class="nav">				
+				<ul>
+				<c:forEach items="${lawtypeList}" var="lawtype">
+					<li>
+						<a href="">${lawtype.typeName}</a>
+						<div class="pop">
+							<div class="left fl">
+								<div>
+								<c:forEach items="${lawtype.categoryList}" var="second">
+									<div class="xuangou_left fl">
+										<a href="getLawInfo.do?id=${second.id}">
+											<span class="fl">${second.typeName}</span>
+										</a>
+									</div>
+									<div class="xuangou_right fr"><a href="getLawyerId.do?id=${lawtype.id}">选择</a></div>
+									<div class="clear"></div>
+									</c:forEach>
+								</div>	
+						</div>
+						</div>
+					</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>	
+
+		<div class="sub_banner center">
+			<div class="sidebar fl">
+				<div class="fl"><a href=""><img src="/xinnuo/image/gg.PNG"></a></div>
+				<div class="fl"><a href=""><img src="/xinnuo/image/hh.PNG" ></a></div>
+				<div class="fl"><a href=""><img src="/xinnuo/image/jj.PNG" ></a></div>
+				<div class="fl"><a href=""><img src="/xinnuo/image/kk.PNG"></a></div>
+				<div class="fl"><a href=""><img src="/xinnuo/image/ll.PNG" ></a></div>
+				<div class="fl"><a href=""><img src="/xinnuo/image/zz.PNG"></a></div>
+				<div class="clear"></div>
+			</div>
+			<div class="datu fl"><a href=""><img src="/xinnuo/image/19.jpg" alt=""></a></div>
+			<div class="datu fl"><a href=""><img src="/xinnuo/image/13.jpg" alt=""></a></div>
+			<div class="datu fr"><a href=""><img src="/xinnuo/image/21.jpg" alt=""></a></div>
+			<div class="clear"></div>
+
+
+		</div>
+	<!-- end banner -->
+
+	<!-- start danpin -->
+		<div class="danpin center">
+			<div class="biaoti center">在线法律咨询</div>
+			<div class="main center">
+			<c:forEach items="${selectLawyer}" var="select">
+				<div class="mingxing fl">
+					<div class="sub_mingxing"><a href=""><img src="image/${select.head}" alt=""></a></div>
+					<div class="pinpai"><a href="">${select.name}</a></div>
+					<div class="youhui">${select.describe}</div>
+					<div class="jiage">${select.phonenum}</div>	
+				</div>
+			</c:forEach>
+			</div>	
+		</div>
+		<div class="peijian w">
+			<div class="biaoti center">优选律师</div>
+			<div class="main center">
+				<div class="content">
+				<c:forEach items="${selectAll}" var="lawyer">
+					<div class="remen fl"  onclick="">
+						<div class="xinpin"><span>推荐</span></div>
+						<div class="tu"><a href=""><img src="image/${lawyer.head}"></a></div>
+						<div class="miaoshu"><a href="">${lawyer.name}</a></div>
+						<div class="jiage">${lawyer.describe}</div>
+						<div class="pingjia">帮助人数${lawyer.helpcount}</div>
+						<div class="piao">
+							<a href="">
+								<span>工作时间：${lawyer.service_Time}</span>
+								<span>手机：${lawyer.phonenum}</span>
+							</a>
+						</div>
+					</div>
+				</c:forEach>	
+				</div>				
+			</div>
+		</div>
+		<footer class="mt20 center">			
+			<div class="mt20">关于我们|联系方式|帮助中心|律师加盟|市场合作|法律声明|意见反馈|网址地图|支付方式|隐私政策|Select Region</div>
+			<div>Copyright 2004-2018 66Law.cn 版权所有 蜀ICP备11014096号-1 增值电信业务经营许可证(川B2-20110140)</div> 
+			<div>川公网安备 51019002000193号</div>
+		</footer>
+  </body>
+</html>

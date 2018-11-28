@@ -1,0 +1,9 @@
+package cn.controller;
+
+import cn.pojo.OneToOneApplication;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public class OneToOneApplicationController {
+    
+}

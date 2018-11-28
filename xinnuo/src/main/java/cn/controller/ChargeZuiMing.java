@@ -1,0 +1,69 @@
+package cn.controller;
+
+import java.util.List;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import cn.mapper.AnliMapper;
+import cn.mapper.ChargeMapper;
+
+import cn.pojo.Anli;
+import cn.pojo.Charge;
+
+import cn.service.AnliService;
+
+
+
+
+@Controller
+public class ChargeZuiMing {
+	
+
+@Autowired
+private ChargeMapper chargeMapper;
+@Autowired
+private AnliMapper anliMapper;
+
+
+@RequestMapping(value="/chargezui.do")
+	 public String infoHouser(Model model){
+		 List<Charge> charge = chargeMapper.cha();
+		 List<Anli> anli = anliMapper.chaAnli();
+			 model.addAttribute("charge", charge);
+			 model.addAttribute("anli", anli);
+			return "zyZuiK";
+}
+
+@RequestMapping(value="/asa.do")
+public String add(@RequestParam(value="id",required=true)int id,Model model){
+	Charge charge = new Charge();
+	charge.setId(id);
+	Charge chaKan=chargeMapper.chaa(charge);
+	if(chaKan!=null){
+		model.addAttribute("chaKan", chaKan);	
+	}
+	return "zyAnli";
+}
+@RequestMapping(value="/aea.do")
+public String chakna(@RequestParam(value="id",required=true)int id,Model model){
+	Anli anli=new Anli();
+	anli.setId(id);
+	Anli list=anliMapper.chakans(anli);
+	
+		model.addAttribute("list", list);
+	
+	return "zyZhinan";
+		
+}
+
+
+
+}

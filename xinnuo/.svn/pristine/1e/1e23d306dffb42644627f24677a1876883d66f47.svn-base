@@ -1,0 +1,9 @@
+package cn.mapper;
+
+import cn.pojo.Entrust;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface EntrustMapper {
+    List<Entrust> select();
+}

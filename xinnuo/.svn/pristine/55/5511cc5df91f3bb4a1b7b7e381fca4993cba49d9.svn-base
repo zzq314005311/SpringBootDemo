@@ -1,0 +1,4 @@
+yoLo.url=jdbc:mysql://localhost:3306/xinnuo
+yoLo.driver=com.mysql.jdbc.Driver
+yoLo.userName=root
+yoLo.password=ww

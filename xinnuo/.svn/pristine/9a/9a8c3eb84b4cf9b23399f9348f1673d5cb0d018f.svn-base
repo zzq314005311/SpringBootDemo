@@ -1,0 +1,12 @@
+package cn.service;
+
+import cn.pojo.Entrust;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface EntrustService {
+	 List<Entrust> select();
+	 int insert(Entrust entrust);
+	 List<Entrust> selectid(int id);
+	 List<Entrust> reply(Entrust entrust);
+}

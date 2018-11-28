@@ -1,0 +1,29 @@
+package cn.controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.pojo.Lawtype;
+import cn.pojo.Lawyer;
+import cn.service.LawtypeService;
+
+@Controller
+public class LawtypeController {
+	@Autowired
+	private LawtypeService lawtypeService;
+	@RequestMapping("/getLawtypeList.do")
+	public String getLawtypeList(Model model) {
+		List<Lawtype> lawtypeList=lawtypeService.getAll();
+	
+		List<Lawyer> selectLawyer=lawtypeService.selectLawyer();
+		List<Lawyer> selectAll=lawtypeService.selectAll();
+		model.addAttribute("lawtypeList",lawtypeList);
+		model.addAttribute("selectLawyer",selectLawyer);
+		model.addAttribute("selectAll",selectAll);
+		return "index";
+	}
+    
+}

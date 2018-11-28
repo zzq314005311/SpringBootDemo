@@ -1,0 +1,50 @@
+package cn.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.mapper.LawyerMapper;
+import cn.pojo.Lawtype;
+import cn.pojo.Lawyer;
+import cn.service.LawyerService;
+
+@Service
+public class LawyerServiceimpl implements LawyerService {
+
+	@Autowired
+	private LawyerMapper lawyerMapper;
+
+	@Override
+	public Lawyer htlogin(Lawyer lawyer) {
+		// TODO Auto-generated method stub
+		return lawyerMapper.htlogin(lawyer);
+	}
+
+
+	@Override
+	public Lawyer selectLawyer(int id) {
+		// TODO Auto-generated method stub
+		return  lawyerMapper.selectLawyer(id);
+	}
+
+
+	@Override
+	public Lawyer zhuanye(Lawyer lawyer) {
+		// TODO Auto-generated method stub
+		return lawyerMapper.zhuanye(lawyer.getId());
+	}
+
+	@Override
+	public void update(Lawyer lawyer) {
+		// TODO Auto-generated method stub
+		lawyerMapper.update(lawyer);
+	}
+
+
+
+
+	
+
+}

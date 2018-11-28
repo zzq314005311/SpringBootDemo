@@ -1,0 +1,27 @@
+package cn.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.pojo.Entrust;
+import cn.service.EntrustService;
+
+@Controller
+public class EntrustController {
+	@Autowired
+	private EntrustService entrustService;
+	
+	@RequestMapping("entrust.do")
+	public String selAll(Model model){
+		List<Entrust> entrusts = entrustService.select();
+		if(entrusts!=null){
+			model.addAttribute("entrusts", entrusts);
+			return "entrust";
+		}
+		return "index";
+	}
+}	

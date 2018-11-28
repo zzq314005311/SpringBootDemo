@@ -1,0 +1,9 @@
+package cn.service;
+
+import cn.pojo.Lawyer;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface LawyerService {
+	Lawyer htlogin(Lawyer lawyer);
+}

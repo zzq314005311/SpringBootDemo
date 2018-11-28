@@ -1,0 +1,145 @@
+<%@ page language="java" import="java.util.*" pageEncoding="Utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'chatQQ.jsp' starting page</title>
+    <link rel="stylesheet" type="text/css" href="css/qq.css"/>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+    var ws;
+    var wsUri = "ws://192.168.10.4:8080/xinnuo/websocket";
+    ws = new WebSocket(wsUri);
+    //接收后台getBasicRemote().sendText()的内容
+    ws.onmessage = function(message) {
+        writeToScreen(message.data);
+    };
+
+    //向后台发送信息 OnMessage接收
+    function button() {
+        message = document.getElementById('in').value;
+        ws.send(message);
+       
+    }
+
+    //发生错误时
+    ws.onerror = function(msg) {
+        writeToScreen('<span style="color:red;">系统出错啦</span>' + msg.data);
+        ws.close();
+    };
+
+    //聊天信息写入窗口中
+    function writeToScreen(message) {
+        var pre = document.createElement("p");
+        pre.style.wordWrap = "break-word ";
+        pre.innerHTML = message;
+         var aa=document.createElement("p");	 
+        aa.innerHTML="时间与用户名 显示为红色"
+        output.appendChild(aa)
+        output.appendChild(pre)
+        
+    }
+
+    //当关闭页面时执行，调用后台的OnClose方法
+    window.onbeforeunload = function() {
+        ws.close();
+    };
+</script>
+  </head>
+  
+<body>
+
+<div class="qqBox">
+	<div class="BoxHead">
+		<div class="headImg">
+			<img src="image/6.jpg"/>
+		</div>
+		<div class="internetName">90后大叔</div>
+	</div>
+	<div class="context">
+		
+		<div class="conRight">
+			<div class="Righthead">
+				<div class="headName">律师或者用户的id对立</div>
+				<div class="headConfig">
+					<ul>
+						<li><img src="image/20170926103645_06.jpg"/></li>
+						<li><img src="image/20170926103645_08.jpg"/></li>
+						<li><img src="image/20170926103645_10.jpg"/></li>
+						<li><img src="image/20170926103645_12.jpg"/></li>
+					</ul>
+				</div>
+			</div>
+			<div class="RightCont">
+				<ul class="newsList"   id="output">
+				<li><p>请等待律师回应</p></li>
+				</ul>
+			</div>
+			<div class="RightFoot">
+				<div class="emjon">
+					<ul>
+						<li><img src="image/em_02.jpg"/></li>
+						<li><img src="image/em_05.jpg"/></li>
+						<li><img src="image/em_07.jpg"/></li>
+						<li><img src="image/em_12.jpg"/></li>
+						<li><img src="image/em_14.jpg"/></li>
+						<li><img src="image/em_16.jpg"/></li>
+						<li><img src="image/em_20.jpg"/></li>
+						<li><img src="image/em_23.jpg"/></li>
+						<li><img src="image/em_25.jpg"/></li>
+						<li><img src="image/em_30.jpg"/></li>
+						<li><img src="image/em_31.jpg"/></li>
+						<li><img src="image/em_33.jpg"/></li>
+						<li><img src="image/em_37.jpg"/></li>
+						<li><img src="image/em_38.jpg"/></li>
+						<li><img src="image/em_40.jpg"/></li>
+						<li><img src="image/em_45.jpg"/></li>
+						<li><img src="image/em_47.jpg"/></li>
+						<li><img src="image/em_48.jpg"/></li>	
+						<li><img src="image/em_52.jpg"/></li>
+						<li><img src="image/em_54.jpg"/></li>
+						<li><img src="image/em_55.jpg"/></li>
+					</ul>
+				</div>
+				<div class="footTop">
+					<ul>
+						<li><img src="image/20170926103645_31.jpg"/></li>
+						<li class="ExP"><img src="image/20170926103645_33.jpg"/></li>
+						<li><img src="image/20170926103645_35.jpg"/></li>
+						<li><img src="image/20170926103645_37.jpg"/></li>
+						<li><img src="image/20170926103645_39.jpg"/></li>
+						<li><img src="image/20170926103645_41.jpg" alt="" /></li>
+						<li><img src="image/20170926103645_43.jpg"/></li>
+						<li><img src="image/20170926103645_45.jpg"/></li>
+					</ul>
+				</div>
+				<div class="inputBox">
+					<textarea  id="in" name="message" style="width: 99%;height: 75px; border: none;outline: none;" name="" rows="" cols="">
+					
+					</textarea>
+					<button class="sendBtn"  onclick="button()">发送(s)</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/chat.js"></script> -->
+
+</body>
+</html>

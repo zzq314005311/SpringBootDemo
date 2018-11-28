@@ -1,0 +1,14 @@
+package cn.service;
+
+import cn.pojo.Lawtype;
+import cn.pojo.Lawyer;
+
+import java.util.List;
+
+
+public interface LawtypeService {
+	List<Lawtype> selectLawType();
+	List<Lawyer> selectLawyer();
+	List<Lawyer> selectAll();
+    
+}

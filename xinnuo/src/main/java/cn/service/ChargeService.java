@@ -1,0 +1,10 @@
+package cn.service;
+
+import cn.pojo.Charge;
+import java.util.List;
+
+
+public interface ChargeService {
+	List<Charge> cha();
+	Charge chaa(Charge charge);
+}
